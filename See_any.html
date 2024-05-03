@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>❤️‍🩹</title>
+<style>
+  body {
+    background: linear-gradient(to right, #ff9999, #66ccff); /* Colorful background */
+    font-family: 'Times New Roman', Times, serif; /* Italic bold font */
+    font-style: italic; /* Italic */
+    font-weight: bold; /* Stylish font */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .heart-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 800px; /* Container width */
+  }
+  .heart {
+    width: 300px;
+    height: 270px;
+    cursor: pointer;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+  }
+  .heart:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+  }
+  .red-heart {
+    background-image: url('1r.png'); /* Red heart shape image */
+    background-size: contain; /* Ensuring full visibility */
+  }
+  .blue-heart {
+    background-image: url('2b.png'); /* Blue heart shape image */
+    background-position: center bottom; /* Adjusting position */
+    background-size: contain; /* Ensuring full visibility */
+  }
+  .heart-text {
+    color: #fff; /* White text color */
+    font-size: 24px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centering text */
+  }
+</style>
+</head>
+<body>
+
+<div class="heart-container">
+  <div id="lastMessage" class="heart red-heart" onclick="goToLastMsg()">
+    <div class="heart-text">Last Message</div>
+  </div>
+  <div id="personalRant" class="heart blue-heart" onclick="goToPersonalRant()">
+    <div class="heart-text">Personal Rant</div>
+  </div>
+</div>
+
+<script>
+  function goToLastMsg() {
+    window.open('lastmsg.html', '_blank');
+  }
+  
+  function goToPersonalRant() {
+    window.open('book.html', '_blank');
+  }
+</script>
+
+</body>
+</html>

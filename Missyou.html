@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Floating Text</title>
+<style>
+  body {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(90deg, #fff 50%, #4a1010 50%);
+    color: #ffffff; /* White text */
+    font-family: Arial, sans-serif; /* Stylish font */
+  }
+
+  .floating-text {
+    position: absolute;
+    font-size: 20px;
+  }
+
+  .floating-image {
+    position: absolute;
+    width: 75px; /* Adjust image size as needed */
+    height: 75px;
+  }
+</style>
+</head>
+<body>
+<script>
+  const translations = [
+  { language: "Hindi", text: "मुझे तुम्हारी याद आती है और मैं तुम्हें हमेशा के लिए प्यार करता हूँ" },
+    { language: "Tamil", text: "உன்னை பிரிந்து தவிக்கிறேன் மற்றும் நான் உன்னை  எப்போதும் காதலிக்கிறேன்" },
+    { language: "Telugu", text: "నిన్ను నాకు మిస్ అవుతుంది మరియు నేను మీకు ఎప్పటికీ ప్రేమిస్తున్నాను" },
+    { language: "Urdu", text: "مجھے آپ کی یاد آتی ہے اور میں آپ کو ہمیشہ کے لیے پسند کرتا ہوں" },
+    { language: "Gujarati", text: "હું તને યાદ કરું છું અને હું તને હંમેશાં પ્રેમ કરું છું" },
+    { language: "Odia", text: "ମୁଁ ତୁମେ ମିସ୍ କରୁଛି ଏବଂ ମୁଁ ତୁମେ ଯେଉଁଠିକି ପ୍ରେମ କରୁଛି" },
+    { language: "Malayalam", text: "നിങ്ങളെ ഞാൻ ഇഷ്ടപ്പെടുന്നു എന്നിരിക്കുന്നു എനിക്കും നിങ്ങളെ മരിച്ചുകളയുന്നു" },
+    { language: "Kannada", text: "ನನಗೆ ನಿನ್ನ ಬಯಕೆಯಾಗಿದೆ ಮತ್ತು ನಾನು ನಿನ್ನನ್ನು ಯಾವಾಗಲೂ ಪ್ರೀತಿಸುತ್ತಿದ್ದೇನೆ" },
+    { language: "English", text: "I miss you and I love you forever" },
+    { language: "Spanish", text: "Te extraño y te amo para siempre" },
+    { language: "French", text: "Tu me manques et je t'aime pour toujours" },
+    { language: "German", text: "Ich vermisse dich und ich liebe dich für immer" },
+    { language: "Chinese (Simplified)", text: "我想你，我永远爱你" },
+    { language: "Arabic", text: "أشتاق إليك وأحبك إلى الأبد" },
+    { language: "Russian", text: "Я скучаю по тебе и люблю тебя навсегда" },
+    { language: "Portuguese", text: "Sinto sua falta e te amo para sempre" },
+    { language: "Italian", text: "Mi manchi e ti amo per sempre" }
+  
+  ];
+
+  const imageSrc = "R.png"; // Image source
+  const imageCount = 35; // Number of floating images
+
+  // Function to create and move text elements
+  function createFloatingText(language, text) {
+    const textElement = document.createElement('div');
+    textElement.textContent = `${language}: ${text}`;
+    textElement.classList.add('floating-text');
+    document.body.appendChild(textElement);
+
+    // Set initial position
+    let x = Math.random() * (window.innerWidth - textElement.clientWidth);
+    let y = Math.random() * (window.innerHeight - textElement.clientHeight);
+    let stepX = (Math.random() * 2 - 1) * 0.5; // Random horizontal step (-0.5 to 0.5)
+    let stepY = (Math.random() * 2 - 1) * 0.5; // Random vertical step (-0.5 to 0.5)
+
+    // Move the text element
+    const moveText = () => {
+      x += stepX;
+      y += stepY;
+
+      // Reverse direction if going out of screen
+      if (x <= 0 || x >= window.innerWidth - textElement.clientWidth) {
+        stepX *= -1;
+      }
+      if (y <= 0 || y >= window.innerHeight - textElement.clientHeight) {
+        stepY *= -1;
+      }
+
+      textElement.style.left = `${x}px`;
+      textElement.style.top = `${y}px`;
+
+      requestAnimationFrame(moveText); // Move element recursively
+    };
+
+    moveText(); // Start moving text
+  }
+
+  // Function to create and move image elements
+  function createFloatingImages() {
+    for (let i = 0; i < imageCount; i++) {
+      const imageElement = document.createElement('img');
+      imageElement.src = imageSrc;
+      imageElement.classList.add('floating-image');
+      document.body.appendChild(imageElement);
+
+      // Set initial position
+      let x = Math.random() * (window.innerWidth - imageElement.width);
+      let y = Math.random() * (window.innerHeight - imageElement.height);
+      let stepX = (Math.random() * 2 - 1) * 0.5; // Random horizontal step (-0.5 to 0.5)
+      let stepY = (Math.random() * 2 - 1) * 0.5; // Random vertical step (-0.5 to 0.5)
+
+      // Move the image element
+      const moveImage = () => {
+        x += stepX;
+        y += stepY;
+
+        // Reverse direction if going out of screen
+        if (x <= 0 || x >= window.innerWidth - imageElement.width) {
+          stepX *= -1;
+        }
+        if (y <= 0 || y >= window.innerHeight - imageElement.height) {
+          stepY *= -1;
+        }
+
+        imageElement.style.left = `${x}px`;
+        imageElement.style.top = `${y}px`;
+
+        requestAnimationFrame(moveImage); // Move element recursively
+      };
+
+      moveImage(); // Start moving image
+    }
+  }
+
+  // Create floating text for each translation
+  translations.forEach(({ language, text }) => {
+    createFloatingText(language, text);
+  });
+
+  // Create floating images
+  createFloatingImages();
+</script>
+</body>
+</html>
